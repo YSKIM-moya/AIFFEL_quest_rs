@@ -6,7 +6,7 @@
 # PRT(Peer Review Template)
 - [ X ]  **1. 주어진 문제를 해결하는 완성된 코드가 제출되었나요?**
     - 데이터 전처리와 시각화 등을 통해 EDA를 했습니다.
-    - ![image](https://github.com/user-attachments/assets/553a60c1-745d-4628-80d0-d6f8738b012a)
+    - ![image1](image1.jpg)
     - private score를 11만 밑으로는 달성하지 못하였지만 다른 부분들은 문제를 해결하였습니다.
     
 - [ O ]  **2. 전체 코드에서 가장 핵심적이거나 가장 복잡하고 이해하기 어려운 부분에 작성된 
@@ -15,7 +15,7 @@
 
 - [ O ]  **3. 에러가 난 부분을 디버깅하여 문제를 해결한 기록을 남겼거나
 새로운 시도 또는 추가 실험을 수행해봤나요?**
-    - ![image](https://github.com/user-attachments/assets/c9ad32e6-d4d1-41d7-ad28-0d708fa76734)
+    - ![image2](image2.jpg)
     - 필요없거나 영향이 거의 없는 피처를 처리해서 모델의 성능을 올리려고 했습니다.
     - 그리드 서치를 통해서 하이퍼 파라미터 튜닝을 수행하였습니다.
     
