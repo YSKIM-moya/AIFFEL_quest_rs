@@ -29,3 +29,19 @@
 
 # 회고(참고 링크 및 코드 개선)
 코드 중간중간 내용들을 회고로 정리해주셔서 좋았습니다
+
+## 네이버 영화 리뷰 감성 분석 ##
+- Mecab 형태소 분석기로 한국어 토크나이징
+  > 형태소 추출시, 불용어를 제거
+  > 단어장 만들때, PAD/BOS/UNKNOWN/UNUSED 추가하고, 자주 나온 단어 순서대로 word_to_index( 단어 : 숫자벡터 )구성하여 사용
+- 데이터 분석 및 가공
+  > 문장 길이 평균, 최대, 표준편차를 측정하여, maxlen을 설정하고, 각 문장에 PAD를 추가하여 길이를 맞춘다.
+- 모델별 리뷰 긍정/부정 분류
+  > embedding -> 모델 -> relu Dense층-> sigmoid Dense층
+  > LSTM
+  > GlobalMaxPolling1D
+  > 1D Convolution Layer
+- Embedding Layer가 어떻게 학습되었는지 분석
+  > gemsim으로 모델 학습시 embedding layer의 weight값으로, gensim Word2VecKeyedVectors로 단어간 유사도 측정 -> 유사성이 거의 없음
+  > "pre-trained 한국어 Word2Vec 모델"은 이미 잘 학습된 데이타로 단어간 유사성이 좋게 나옴
+- pre-traind 한국어 word2vec 사용시, 훈련/테스트 과적합이 발생하지 않음 (20 epoch)
