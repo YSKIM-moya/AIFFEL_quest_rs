@@ -58,4 +58,23 @@
 # 모델이 어떻게 구성되는지 좀 더 공부를 해봐야겠다. 영숙님께서 잘 설명해주셔서 나도 저렇게 설명할 수 있을 때까지 공부해야겠다고 생각했다.
 # 코드는 너무 깔끔하고 목적별로 주석이 달려있어 좋았다.
 ```
-
+## 뉴스 요약 : Seq2Seq ##
+- 데이터 전처리
+  > 텍스트/헤드라인에서 중복된 행 제거, 텍스트/헤드라인에서 Null인 행 제거
+  > 텍스트 소문자화, url/따옴표/특수문자 등 제거, 불용어 제거
+  > 텍스트 최대 길이 설정 : 최소/최대/평균길이 분포 측
+  > decoder_input 맨앞에 sostoken 추가, decoder_target 맨 뒤에 eostoken 추가
+- 단어장 구성
+  > 전체 텍스트에서 특정회수 이하로 출현되는 희귀단어를 단어장에서 제외하도록, word_counts로 확인하고, vocabulary 크기를 설정
+- tensoflow keras의 Tokenizer와 pad_sequences 사용
+- 훈련용 Seq2Seq
+  > 인코더 : 인코더 input(text_max_len) -> Embedidng(voca_size, dimension) ->  LSTM1(emb) -> LSTM2(enc_out1) ->LSTM3(enc_out2) -> enc_outout, enc_hidden_state, enc_cell_state
+  > 디코더 : 디코더 input(none) -> Embedding(voca_size, dimension) -> LSTM([enc_hidden_state, enc_cell_state]) -> dec_output
+  > Attention : AdditiveAttention( [dec_output, enc_output]) -> 어덴션 결과와 디코더 hidden_sate들 연결
+  > 디코더 출력층 : Dens softmax (decoder_output_concat_attention_output) -> dec_softmax_output
+  > Model( [인코더 input, 디코더 input], dec_softmax_output)optimize : rmspro, loss : spars_categorical_crossentropy
+- 추론용 seq2seq
+  > 인코더 
+  > 디코더 : 훈련 과정에서와 달리 LSTM의 리턴하는 은닉 상태와 셀 상태인 state_h와 state_c를 버리지 않음
+  > Attention : AdditiveAttention( [dec_output, dec_hidden_state]) 
+  
