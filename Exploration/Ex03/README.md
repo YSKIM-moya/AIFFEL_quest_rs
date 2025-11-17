@@ -38,4 +38,12 @@
 # 리뷰어의 회고를 작성합니다.
 # 참고한 링크는 없지만, 확실히 코드와 깔끔한 설명이 좋았고, 딱히 큰 문제는 없었던거 같습니다. 
 ```
-d
+## Face Detection + Sticker 붙이기 ##
+- OpenCV 라이브러리로 2D 이미지 처리
+  > OpenCV 는 BGR(파랑, 녹색, 빨강)을 사용 -> RGB로 변경하여 이미지 출력해야 
+- dlib의 face detector 사용
+  > HOG(Histogram of Oriented Gradients)"-이미지에서 색상의 변화량 나타냄"와 SVM(Support Vector Machine)"-선형분류기"을 사용해서 얼굴을 찾는다
+- 얼굴 랜드 마크 :  shape_predictor_68_face_landmarks.dat
+  > 이목구비의 위치를 추론하는 것을 face landmark localization 기술
+- 스티커
+  > 원본 이미지에 스티커를 붙일 영역만, 스티커이미지를 덮어씌운다.
